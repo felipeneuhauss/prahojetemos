@@ -16,8 +16,7 @@ export async function getStaticProps() {
     geo: 'BR',
   });
 
-  const trendList = JSON.parse(realTimeTrends).storySummaries?.trendingStories
-    .filter((trendingStory: TrendingStory) => trendingStory.articles.length > 2);
+  const trendList = JSON.parse(realTimeTrends).storySummaries?.trendingStories.filter((trendingStory: TrendingStory) => trendingStory.articles.length > 2);
 
   return {
     props: {
@@ -31,7 +30,7 @@ type Props = {
   trends: TrendingStory[]
 };
 
-const Home: NextPage<Props> = ({ trends }: Props) => {
+const Home: NextPage = ({ trends }: Props) => {
   const { setMainTrends } = useMainTrends();
 
   useEffect(() => {
