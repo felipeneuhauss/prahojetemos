@@ -1,5 +1,5 @@
-/** @jsxRuntime automatic */
 /** @jsxImportSource theme-ui */
+/** @jsxRuntime automatic */
 
 import React from 'react';
 import { Flex } from 'theme-ui';
