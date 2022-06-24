@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 /** @jsxRuntime automatic */
 
-import { Box, Flex } from 'theme-ui';
+import { Box, Flex, Text } from 'theme-ui';
 import MainTrends from './MainTrends';
 
 const Header = () => (
@@ -18,8 +18,7 @@ const Header = () => (
         margin: '0 auto',
         flexDirection: ['column', null, null, 'row'],
         gap: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: 'flex-start',
       }}
     >
       <Flex sx={{
@@ -28,13 +27,13 @@ const Header = () => (
         flexDirection: 'column',
       }}
       >
-        <h1>As notícias mais pesquisadas da net nas últimas 24h</h1>
-        <h2>
+        <Text as="h1">As notícias mais pesquisadas da net nas últimas 24h</Text>
+        <Text as="h2">
           Aqui você encontra as melhores materiais dos termos
           mais pesquisados da net nas últimas 24 horas.
-        </h2>
+        </Text>
       </Flex>
-      <Flex sx={{ width: ['100%', null, null, '50%'] }}>
+      <Flex sx={{ width: ['100%', null, null, '50%'], justifyContent: ['center', null, 'end'] }}>
         <MainTrends />
       </Flex>
     </Flex>
