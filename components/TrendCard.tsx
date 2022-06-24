@@ -4,10 +4,9 @@
 import { Article, TrendingStory } from 'shared/types/Trends';
 import {
   Box,
-  Flex, Grid, Link, Text,
+  Flex, Grid, Link, Text, Image,
 } from 'theme-ui';
 import React from 'react';
-import Image from 'next/image';
 import slugify from 'slugify';
 import ellipsis from 'shared/helpers/ellipsis';
 
