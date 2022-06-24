@@ -3,6 +3,7 @@
 
 import { Article, TrendingStory } from 'shared/types/Trends';
 import {
+  Box,
   Flex, Grid, Image, Link, Text,
 } from 'theme-ui';
 import React from 'react';
@@ -16,11 +17,6 @@ type ArticleProp = {
 const TrendArticle: React.FC<ArticleProp> = ({ article }: ArticleProp) => (
   <Link
     href={article.url}
-    sx={{
-      display: 'flex',
-      flexDirection: ['column', 'row'],
-      gap: 12,
-    }}
   >
     <Flex
       as="article"
@@ -54,15 +50,13 @@ type TrendCardPros = {
 }
 
 const TrendCard: React.FC<TrendCardPros> = ({ trend }: TrendCardPros) => (
-  <Flex
+  <Box
     as="section"
     id={slugify(trend.title.toLowerCase())}
     sx={{
       borderRadius: 4,
       border: '1px solid #e5e5e5',
       padding: 12,
-      flexDirection: 'column',
-      gap: 20,
     }}
   >
     <Flex sx={{
@@ -75,8 +69,9 @@ const TrendCard: React.FC<TrendCardPros> = ({ trend }: TrendCardPros) => (
       <Image
         src={`https:${trend.image.imgUrl}`}
         width="160px"
+        height="160px"
         alt={trend.title}
-        sx={{ minWidth: 160 }}
+        sx={{ minWidth: 160, maxHeight: 160 }}
       />
       <Text
         as="h3"
@@ -99,7 +94,7 @@ const TrendCard: React.FC<TrendCardPros> = ({ trend }: TrendCardPros) => (
         <TrendArticle article={article} key={`article-${slugify(article.articleTitle)}`} />
       ))}
     </Grid>
-  </Flex>
+  </Box>
 );
 
 export default TrendCard;
