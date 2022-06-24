@@ -67,12 +67,15 @@ const TrendCard: React.FC<TrendCardPros> = ({ trend }: TrendCardPros) => (
       p: 12,
     }}
     >
-      <Image
-        src={`https:${trend.image.imgUrl}`}
-        width={160}
-        height={160}
-        alt={trend.title}
-      />
+      <Box sx={{ width: 160, height: 160, display: 'block' }}>
+        <Image
+          src={`https:${trend.image.imgUrl}`}
+          width={160}
+          height={160}
+          layout="responsive"
+          alt={trend.title}
+        />
+      </Box>
       <Text
         as="h3"
         sx={{
