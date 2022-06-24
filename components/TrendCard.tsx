@@ -4,8 +4,9 @@
 import { Article, TrendingStory } from 'shared/types/Trends';
 import {
   Box,
-  Flex, Grid, Link, Text, Image,
+  Flex, Grid, Link, Text,
 } from 'theme-ui';
+import Image from 'next/image';
 import React from 'react';
 import slugify from 'slugify';
 import ellipsis from 'shared/helpers/ellipsis';
@@ -71,7 +72,6 @@ const TrendCard: React.FC<TrendCardPros> = ({ trend }: TrendCardPros) => (
         width={160}
         height={160}
         alt={trend.title}
-        sx={{ minWidth: 160, maxHeight: 160 }}
       />
       <Text
         as="h3"
