@@ -9,6 +9,7 @@ import slugify from 'slugify';
 import { TrendingStory } from 'shared/types/Trends';
 import TrendCard from 'components/TrendCard';
 import { useMainTrends } from 'contexts/MainTrendsProvider';
+import Seo from '../components/Seo';
 
 export async function getStaticProps() {
   const realTimeTrends = await googleTrends.realTimeTrends({
@@ -39,21 +40,24 @@ const Home: NextPage<Props> = ({ trends }: Props) => {
   }, []);
 
   return (
-    <Flex sx={{
-      flexDirection: 'column',
-      maxWidth: 1024,
-      margin: '20px auto',
-      px: [20, null, null, 0],
-    }}
-    >
+    <>
+      <Seo title="Últimos termos pesquiados" />
       <Flex sx={{
         flexDirection: 'column',
-        gap: 16,
+        maxWidth: 1024,
+        margin: '20px auto',
+        px: [20, null, null, 0],
       }}
       >
-        {trends?.map((trend) => <TrendCard trend={trend} key={slugify(trend.title)} />)}
+        <Flex sx={{
+          flexDirection: 'column',
+          gap: 16,
+        }}
+        >
+          {trends?.map((trend) => <TrendCard trend={trend} key={slugify(trend.title)} />)}
+        </Flex>
       </Flex>
-    </Flex>
+    </>
   );
 };
 
