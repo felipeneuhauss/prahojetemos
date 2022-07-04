@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 Disallow: /
-Sitemap: https://prahojetemos.com
+Sitemap: https://prahojetemos.com.br

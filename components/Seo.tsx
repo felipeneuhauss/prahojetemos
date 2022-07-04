@@ -9,7 +9,7 @@ type SeoProps = {
 
 const Seo: React.FC<SeoProps> = ({ title }: SeoProps) => {
   const { asPath } = useRouter();
-  const canonicalUrl = (`https://prahojetemos.com${asPath === '/' ? '' : asPath}`).split('?')[0];
+  const canonicalUrl = (`https://prahojetemos.com.br${asPath === '/' ? '' : asPath}`).split('?')[0];
   return (
     <>
       <Script
