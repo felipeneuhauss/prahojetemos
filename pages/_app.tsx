@@ -6,7 +6,7 @@ import Seo from 'components/Seo';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <MainLayout>
-      <Seo />
+      <Seo title="últimos termos pesquisado" />
       <Component {...pageProps} />
     </MainLayout>
   );
