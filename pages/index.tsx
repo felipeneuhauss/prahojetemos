@@ -1,15 +1,18 @@
 /** @jsxRuntime automatic */
 /** @jsxImportSource theme-ui */
 
-import type { NextPage } from 'next';
 import googleTrends from 'google-trends-api';
 import { Flex } from 'theme-ui';
-import { useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 import slugify from 'slugify';
 import { TrendingStory } from 'shared/types/Trends';
 import TrendCard from 'components/TrendCard';
 import { useMainTrends } from 'contexts/MainTrendsProvider';
 import Seo from '../components/Seo';
+import MainLayout from '../layouts/MainLayout';
+import { NextPageWithLayout } from './_app';
+import { GetLastTopNews, TopNewEntity } from '../graphql/generated';
+import apolloConnection from '../resources/apolloConnection';
 
 export async function getStaticProps() {
   const realTimeTrends = await googleTrends.realTimeTrends({
@@ -20,23 +23,29 @@ export async function getStaticProps() {
   const trendList = JSON.parse(realTimeTrends).storySummaries
     ?.trendingStories.filter((trendingStory: TrendingStory) => trendingStory.articles.length > 2);
 
+  const { data: { topNews } } = await apolloConnection.query({ query: GetLastTopNews });
+  const [currentTopNews] = topNews.data;
+
   return {
     props: {
       trends: trendList,
+      topNews: currentTopNews,
     },
     revalidate: 60 * 60,
   };
 }
 
 type Props = {
-  trends: TrendingStory[]
+  trends: TrendingStory[],
+  topNews: TopNewEntity
 };
 
-const Home: NextPage<Props> = ({ trends }: Props) => {
-  const { setMainTrends } = useMainTrends();
+const Home: NextPageWithLayout<Props> = ({ trends, topNews }: Props) => {
+  const { setMainTrends, setTopNews } = useMainTrends();
 
   useEffect(() => {
     setMainTrends(trends?.map((trend: { title: string}) => trend.title));
+    setTopNews(topNews);
   }, []);
 
   return (
@@ -59,6 +68,10 @@ const Home: NextPage<Props> = ({ trends }: Props) => {
       </Flex>
     </>
   );
+};
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
 };
 
 export default Home;

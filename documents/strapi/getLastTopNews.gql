@@ -1,0 +1,13 @@
+query getLastTopNews {
+    topNews (sort: "createdAt", pagination: { page: 1, pageSize: 1 }) {
+        data {
+            attributes {
+                slug
+                imageUrl
+                title
+                description
+                createdAt
+            }
+        }
+    }
+}
