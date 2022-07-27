@@ -55,7 +55,7 @@ const NewsPage: NextPageWithLayout<PageProps> = ({ topNews }: PageProps) => (
     }}
     >
       <h1>{topNews.title}</h1>
-      <p>{topNews.description}</p>
+      <p dangerouslySetInnerHTML={{ __html: topNews.description }} />
       <Flex sx={{ justifyContent: 'space-between' }}>
         <Link href="/" sx={{ color: '#444' }}>Home</Link>
         {topNews.url && (

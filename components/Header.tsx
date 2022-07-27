@@ -45,9 +45,7 @@ const Header = () => {
             ) : (
               <Link href={`/news/${topNews?.attributes?.slug}`}>
                 <Text as="h1">{topNews?.attributes?.title}</Text>
-                <Text as="h2">
-                  {ellipsis(topNews?.attributes?.description)}
-                </Text>
+                <Text as="h2" dangerouslySetInnerHTML={{ __html: ellipsis(topNews?.attributes?.description) }} />
               </Link>
             )}
         </Flex>
