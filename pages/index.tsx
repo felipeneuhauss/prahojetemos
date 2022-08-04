@@ -8,11 +8,11 @@ import slugify from 'slugify';
 import { TrendingStory } from 'shared/types/Trends';
 import TrendCard from 'components/TrendCard';
 import { useMainTrends } from 'contexts/MainTrendsProvider';
-import Seo from '../components/Seo';
-import MainLayout from '../layouts/MainLayout';
+import Seo from 'components/Seo';
+import MainLayout from 'layouts/MainLayout';
+import { GetLastTopNews, TopNewEntity } from 'graphql/generated';
+import apolloConnection from 'resources/apolloConnection';
 import { NextPageWithLayout } from './_app';
-import { GetLastTopNews, TopNewEntity } from '../graphql/generated';
-import apolloConnection from '../resources/apolloConnection';
 
 export async function getStaticProps() {
   const realTimeTrends = await googleTrends.realTimeTrends({

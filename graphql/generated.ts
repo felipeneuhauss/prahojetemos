@@ -20,7 +20,7 @@ export const GetAllTopNewsPathDocument = gql`
     `;
 export const GetLastTopNewsDocument = gql`
     query getLastTopNews {
-  topNews(sort: "createdAt", pagination: {page: 1, pageSize: 1}) {
+  topNews(sort: "createdAt:desc", pagination: {page: 1, pageSize: 1}) {
     data {
       attributes {
         slug
@@ -906,7 +906,7 @@ export const GetAllTopNewsPath = gql`
     `;
 export const GetLastTopNews = gql`
     query getLastTopNews {
-  topNews(sort: "createdAt", pagination: {page: 1, pageSize: 1}) {
+  topNews(sort: "createdAt:desc", pagination: {page: 1, pageSize: 1}) {
     data {
       attributes {
         slug
