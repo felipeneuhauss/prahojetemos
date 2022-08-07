@@ -6,6 +6,7 @@ query getTopNewsBySlug($slug: String) {
         slug
         description
         imageUrl
+        createdAt
       }
     }
   }

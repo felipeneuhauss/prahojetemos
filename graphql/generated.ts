@@ -42,6 +42,7 @@ export const GetTopNewsBySlugDocument = gql`
         slug
         description
         imageUrl
+        createdAt
       }
     }
   }
@@ -890,7 +891,7 @@ export type GetTopNewsBySlugQueryVariables = Exact<{
 }>;
 
 
-export type GetTopNewsBySlugQuery = { __typename?: 'Query', topNews?: { __typename?: 'TopNewEntityResponseCollection', data: Array<{ __typename?: 'TopNewEntity', attributes?: { __typename?: 'TopNew', title: string, slug?: string | null, description: string, imageUrl?: string | null } | null }> } | null };
+export type GetTopNewsBySlugQuery = { __typename?: 'Query', topNews?: { __typename?: 'TopNewEntityResponseCollection', data: Array<{ __typename?: 'TopNewEntity', attributes?: { __typename?: 'TopNew', title: string, slug?: string | null, description: string, imageUrl?: string | null, createdAt?: any | null } | null }> } | null };
 
 
 export const GetAllTopNewsPath = gql`
@@ -928,6 +929,7 @@ export const GetTopNewsBySlug = gql`
         slug
         description
         imageUrl
+        createdAt
       }
     }
   }
