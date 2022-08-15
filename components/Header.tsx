@@ -1,11 +1,10 @@
 /** @jsxImportSource theme-ui */
 /** @jsxRuntime automatic */
 
-import {
-  Box, Flex, Text, Link,
-} from 'theme-ui';
-import { useMainTrends } from 'contexts/MainTrendsProvider';
+import { Box, Flex, Text } from 'theme-ui';
+import Link from 'next/link';
 import MainTrends from './MainTrends';
+import { useMainTrends } from '../contexts/MainTrendsProvider';
 import ellipsis from '../shared/helpers/ellipsis';
 
 const Header = () => {
@@ -33,21 +32,23 @@ const Header = () => {
           flexDirection: 'column',
         }}
         >
-          {!topNews?.attributes
-            ? (
-              <>
-                <Text as="h1">As notícias mais pesquisadas da net nas últimas 24h</Text>
-                <Text as="h2">
-                  Aqui você encontra as melhores materiais dos termos
-                  mais pesquisados da net nas últimas 24 horas.
-                </Text>
-              </>
-            ) : (
-              <Link href={`/news/${topNews?.attributes?.slug}`}>
-                <Text as="h1">{topNews?.attributes?.title}</Text>
-                <Text as="h2" dangerouslySetInnerHTML={{ __html: ellipsis(topNews?.attributes?.description) }} />
-              </Link>
-            )}
+          {!topNews?.attributes ? (
+            <>
+              <Text as="h1">As notícias mais pesquisadas da net nas últimas 24h</Text>
+              <Text as="h2">
+                Aqui você encontra as melhores materiais dos termos
+                mais pesquisados da net nas últimas 24 horas.
+              </Text>
+            </>
+          ) : (
+            <Link href={`/news/${topNews?.attributes.slug}`} passHref>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a>
+                <Text as="h1">{topNews.attributes.title}</Text>
+                <Text as="h2" dangerouslySetInnerHTML={{ __html: ellipsis(topNews.attributes.description) }} />
+              </a>
+            </Link>
+          )}
         </Flex>
         <Flex sx={{ width: ['100%', null, null, '50%'], justifyContent: ['center', null, 'end'] }}>
           <MainTrends />
@@ -56,5 +57,4 @@ const Header = () => {
     </Box>
   );
 };
-
 export default Header;

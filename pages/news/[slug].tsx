@@ -2,22 +2,21 @@
 /** @jsxImportSource theme-ui */
 
 import { Flex, Link } from 'theme-ui';
-import apolloConnection from '../../resources/apolloConnection';
+import apolloConnection from 'resources/apolloConnection';
 import {
   GetAllTopNewsPath, GetTopNewsBySlug, TopNew, TopNewEntity,
-} from '../../graphql/generated';
-import PageLayout from '../../layouts/PageLayout';
+} from 'graphql/generated';
+import PageLayout from 'layouts/PageLayout';
+import Seo from 'components/Seo';
 import { NextPageWithLayout } from '../_app';
-import Seo from '../../components/Seo';
 
 export async function getStaticPaths() {
   const { data: { topNews: { data: slugs } } } = await apolloConnection
     .query({ query: GetAllTopNewsPath });
 
-  const paths = slugs.filter((item: TopNewEntity) => item?.attributes?.slug)
-    .map((item: TopNewEntity) => ({
-      params: { slug: item.attributes?.slug },
-    }));
+  const paths = slugs.map((item: TopNewEntity) => ({
+    params: { slug: item.attributes?.slug },
+  }));
 
   return {
     paths,
