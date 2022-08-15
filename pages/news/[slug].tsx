@@ -59,6 +59,7 @@ const NewsPage: NextPageWithLayout<PageProps> = ({ topNews }: PageProps) => (
         {' '}
         {topNews.createdAt}
       </small>
+      {/* In case of edited content */}
       <p dangerouslySetInnerHTML={{ __html: topNews.description }} />
       <Flex sx={{ justifyContent: 'space-between' }}>
         <Link href="/" sx={{ color: '#444' }}>Home</Link>

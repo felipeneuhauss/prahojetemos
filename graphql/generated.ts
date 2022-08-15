@@ -1,6 +1,7 @@
 import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -51,20 +52,19 @@ export const GetTopNewsBySlugDocument = gql`
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
-
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    getAllTopNewsPath(variables?: GetAllTopNewsPathQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllTopNewsPathQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetAllTopNewsPathQuery>(GetAllTopNewsPathDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllTopNewsPath', 'query');
+    getAllTopNewsPath(variables?: GetAllTopNewsPathQueryVariables, requestHeaders?: Dom.RequestInit['headers']): Promise<GetAllTopNewsPathQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllTopNewsPathQuery>(GetAllTopNewsPathDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'getAllTopNewsPath', 'query');
     },
-    getLastTopNews(variables?: GetLastTopNewsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetLastTopNewsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetLastTopNewsQuery>(GetLastTopNewsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getLastTopNews', 'query');
+    getLastTopNews(variables?: GetLastTopNewsQueryVariables, requestHeaders?: Dom.RequestInit['headers']): Promise<GetLastTopNewsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetLastTopNewsQuery>(GetLastTopNewsDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'getLastTopNews', 'query');
     },
-    getTopNewsBySlug(variables?: GetTopNewsBySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetTopNewsBySlugQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetTopNewsBySlugQuery>(GetTopNewsBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getTopNewsBySlug', 'query');
-    }
+    getTopNewsBySlug(variables?: GetTopNewsBySlugQueryVariables, requestHeaders?: Dom.RequestInit['headers']): Promise<GetTopNewsBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetTopNewsBySlugQuery>(GetTopNewsBySlugDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'getTopNewsBySlug', 'query');
+    },
   };
 }
 export type Sdk = ReturnType<typeof getSdk>;
@@ -297,61 +297,49 @@ export type Mutation = {
   upload: UploadFileEntityResponse;
 };
 
-
 export type MutationCreateTopNewArgs = {
   data: TopNewInput;
 };
-
 
 export type MutationCreateUploadFileArgs = {
   data: UploadFileInput;
 };
 
-
 export type MutationCreateUsersPermissionsRoleArgs = {
   data: UsersPermissionsRoleInput;
 };
-
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
 };
 
-
 export type MutationDeleteTopNewArgs = {
   id: Scalars['ID'];
 };
-
 
 export type MutationDeleteUploadFileArgs = {
   id: Scalars['ID'];
 };
 
-
 export type MutationDeleteUsersPermissionsRoleArgs = {
   id: Scalars['ID'];
 };
-
 
 export type MutationDeleteUsersPermissionsUserArgs = {
   id: Scalars['ID'];
 };
 
-
 export type MutationEmailConfirmationArgs = {
   confirmation: Scalars['String'];
 };
-
 
 export type MutationForgotPasswordArgs = {
   email: Scalars['String'];
 };
 
-
 export type MutationLoginArgs = {
   input: UsersPermissionsLoginInput;
 };
-
 
 export type MutationMultipleUploadArgs = {
   field?: InputMaybe<Scalars['String']>;
@@ -360,16 +348,13 @@ export type MutationMultipleUploadArgs = {
   refId?: InputMaybe<Scalars['ID']>;
 };
 
-
 export type MutationRegisterArgs = {
   input: UsersPermissionsRegisterInput;
 };
 
-
 export type MutationRemoveFileArgs = {
   id: Scalars['ID'];
 };
-
 
 export type MutationResetPasswordArgs = {
   code: Scalars['String'];
@@ -377,36 +362,30 @@ export type MutationResetPasswordArgs = {
   passwordConfirmation: Scalars['String'];
 };
 
-
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
 };
-
 
 export type MutationUpdateTopNewArgs = {
   data: TopNewInput;
   id: Scalars['ID'];
 };
 
-
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
   id: Scalars['ID'];
 };
-
 
 export type MutationUpdateUsersPermissionsRoleArgs = {
   data: UsersPermissionsRoleInput;
   id: Scalars['ID'];
 };
 
-
 export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
   id: Scalars['ID'];
 };
-
 
 export type MutationUploadArgs = {
   field?: InputMaybe<Scalars['String']>;
@@ -446,11 +425,9 @@ export type Query = {
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
 };
 
-
 export type QueryI18NLocaleArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
-
 
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
@@ -458,11 +435,9 @@ export type QueryI18NLocalesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-
 export type QueryTopNewArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
-
 
 export type QueryTopNewsArgs = {
   filters?: InputMaybe<TopNewFiltersInput>;
@@ -470,11 +445,9 @@ export type QueryTopNewsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-
 export type QueryUploadFileArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
-
 
 export type QueryUploadFilesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
@@ -482,11 +455,9 @@ export type QueryUploadFilesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-
 export type QueryUsersPermissionsRoleArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
-
 
 export type QueryUsersPermissionsRolesArgs = {
   filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
@@ -494,11 +465,9 @@ export type QueryUsersPermissionsRolesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-
 export type QueryUsersPermissionsUserArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
-
 
 export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -754,13 +723,11 @@ export type UsersPermissionsRole = {
   users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
 
-
 export type UsersPermissionsRolePermissionsArgs = {
   filters?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
-
 
 export type UsersPermissionsRoleUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -878,11 +845,9 @@ export type UsersPermissionsUserRelationResponseCollection = {
 
 export type GetAllTopNewsPathQueryVariables = Exact<{ [key: string]: never; }>;
 
-
 export type GetAllTopNewsPathQuery = { __typename?: 'Query', topNews?: { __typename?: 'TopNewEntityResponseCollection', data: Array<{ __typename?: 'TopNewEntity', attributes?: { __typename?: 'TopNew', slug?: string | null } | null }> } | null };
 
 export type GetLastTopNewsQueryVariables = Exact<{ [key: string]: never; }>;
-
 
 export type GetLastTopNewsQuery = { __typename?: 'Query', topNews?: { __typename?: 'TopNewEntityResponseCollection', data: Array<{ __typename?: 'TopNewEntity', attributes?: { __typename?: 'TopNew', slug?: string | null, imageUrl?: string | null, title: string, description: string, createdAt?: any | null } | null }> } | null };
 
@@ -890,9 +855,7 @@ export type GetTopNewsBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
 }>;
 
-
 export type GetTopNewsBySlugQuery = { __typename?: 'Query', topNews?: { __typename?: 'TopNewEntityResponseCollection', data: Array<{ __typename?: 'TopNewEntity', attributes?: { __typename?: 'TopNew', title: string, slug?: string | null, description: string, imageUrl?: string | null, createdAt?: any | null } | null }> } | null };
-
 
 export const GetAllTopNewsPath = gql`
     query getAllTopNewsPath {
@@ -904,7 +867,7 @@ export const GetAllTopNewsPath = gql`
     }
   }
 }
-    `;
+`;
 export const GetLastTopNews = gql`
     query getLastTopNews {
   topNews(sort: "createdAt:desc", pagination: {page: 1, pageSize: 1}) {

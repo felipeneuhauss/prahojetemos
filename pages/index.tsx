@@ -25,6 +25,7 @@ export async function getStaticProps() {
 
   const { data: { topNews } } = await apolloConnection.query({ query: GetLastTopNews });
   const [currentTopNews] = topNews.data;
+  console.log('currentTopNews', currentTopNews);
 
   return {
     props: {
